@@ -1,3 +1,4 @@
+<h1 class="font-bold text-3xl mb-6"> Purchase <%=@tea.name%> Tea for <%=number_to_currency(@tea.price)%></h1>
 <div class="max-w-3xl mx-auto px-4">
   <div data-controller="payment" data-payment-item-value="<%=@tea.id%>" data-payment-return-url-value="<%=root_url%>">
     <div clas="mb-10">
