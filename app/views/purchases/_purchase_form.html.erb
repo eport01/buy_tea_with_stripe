@@ -10,6 +10,10 @@
       <%= form.label :email %>
       <%= form.text_field :email,  data: { payment_target: "email" } %>
     </div>
+
+    <div>
+      <%= form.hidden_field :tea_id, value: @tea.id %>
+    </div>
   </div>
   <%= form.submit "Buy #{@tea.name} Tea", class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium", data: { payment_target: "submit"} %>
 <%end%>

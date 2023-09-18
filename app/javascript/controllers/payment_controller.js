@@ -35,4 +35,49 @@ export default class extends Controller {
     const paymentElement = elements.create("payment")
     paymentElement.mount(this.elementTarget)
   }
+
+  async purchase(event) {
+    event.preventDefault()
+    this.setLoading(true)
+
+    const { error } = await stripe.confirmPayment({
+      elements,
+      redirect: "if_required"
+    })
+    if (error) {
+      if (error.type === "card_error" || error.type === "validation_error") {
+        this.showMessage(error.message)
+      } else {
+        this.showMessage("An unexpected error occured")
+      }
+    } else {
+      this.formTarget.submit()
+      this.setLoading(false)
+    }
+  }
+
+  setLoading(isLoading) {
+    if (isLoading) {
+      // Disable the button and swap text
+
+      this.submitTarget.disabled = true 
+      this.submitTarget.classList.add("opacity-50")
+      this.submitTarget.value = "Processing..."    
+    } else {
+      this.submitTarget.disabled = false 
+      this.ubmitTarget.classList.add("opacity-50")
+      this.submitTarget.value = "Purchase Tea"        
+    }
+
+  }
+
+  showMessage(messageText) {
+    this.messageTarget.classList.remove("hidden")
+    this.messageTarget.textContent = messageText
+
+    setTimeout(() => {
+      this.messageTarget.classList.add("hidden")
+      this.messageTarget.textContent = "";
+    }, 4000)
+  }
 }
