@@ -1,0 +1,10 @@
+<div class="max-w-3xl mx-auto px-4">
+  <div data-controller="payment" data-payment-item-value="<%=@tea.id%>" data-payment-return-url-value="<%=root_url%>">
+    <div clas="mb-10">
+      <h3 class="font-bold text-xl mb-3">Enter payment details</h3>
+      <div id="payment-element" data-payment-target="element"></div>
+      <div data-payment-target="message" class="hidden"></div>
+    </div>
+    <%= render 'purchase_form', purchase: @purchase %>
+  </div>
+</div>

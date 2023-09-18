@@ -14,3 +14,13 @@
     <%= link_to 'Back to teas', teas_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 </div>
+<div>
+
+<div data-controller="payment" data-payment-item-value="<%=@tea.id%>" data-payment-return-url-value="<%=root_url%>">
+  <div class="mb-6">
+    <h3 class="font-bold text-3xl mb-6">Enter Payment Details</h3>
+    <div id="payment-element" data-payment-target="element"></div>
+    <div data-payment-target="message" class="hidden"></div>
+  </div>
+
+</div>

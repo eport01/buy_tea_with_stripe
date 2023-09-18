@@ -1,0 +1,35 @@
+<%= form_with(model: @tea, data: { turbo: false, action: "submit->payment#purchase", payment_target: "form"}) do |form| %>
+  <% if tea.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 p-6 rounded text-red-800">
+      <h2 class="text-lg font-semibold mb-3"><%= pluralize(tea.errors.count, "error") %> prohibited this tea from being saved:</h2>
+
+      <ul class="list-disc leading-relaxed">
+        <% tea.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h3 class="font-bold text-lg mb-3 mt-6">Personal details</h3>
+
+  <div class="grid grid-col-1 lg:grid-cols-2 gap-6 mb-10">
+    <div>
+      <%= form.label :name, class: label_class %>
+      <%= form.text_field :name, class: input_class, data: { payment_target: "name" } %>
+    </div>
+
+    <div>
+      <%= form.label :email, class: label_class %>
+      <%= form.text_field :email, class: input_class, data: { payment_target: "email" } %>
+    </div>
+  </div>
+
+  <div class="mb-6">
+    <%= form.label :notes, class: label_class %>
+    <%= form.rich_text_area :notes, class: input_class %>
+  </div>
+
+  <h3 class="font-bold text-lg mb-3">Tea details</h3>
+
+<% end %>

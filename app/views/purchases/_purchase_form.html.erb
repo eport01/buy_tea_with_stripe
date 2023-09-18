@@ -1,0 +1,20 @@
+<%=form_with(model: purchase, data: { turbo: false, action: "submit->payment#purchase", payment_target: "form"} ) do |form| %>
+  <h1>Buy <%= @tea.name%> for <%= number_to_currency(@tea.price)%>
+  <h3 class="font-bold text-lg mb-3 mt-6">Personal Details</h3>
+  <div class="grid grid-col-1 lg:grid-cols-2 gap-6 mb-10">
+    <div class="mb-6">
+      <%= form.label :name%>
+      <%= form.text_field :name,  data: { payment_target: "name" } %>
+    </div>
+
+    <div>
+      <%= form.label :email %>
+      <%= form.text_field :email,  data: { payment_target: "email" } %>
+    </div>
+  </div>
+  <%= form.submit "Buy #{@tea.name} Tea", class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium", data: { payment_target: "submit"} %>
+<%end%>
+
+
+</div>
+<%= link_to 'Back to teas', teas_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>

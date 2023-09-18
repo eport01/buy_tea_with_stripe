@@ -46,6 +46,10 @@ class TeasController < ApplicationController
     end
   end
 
+  def intent
+    
+  end
+
   # PATCH/PUT /teas/1 or /teas/1.json
   def update
     respond_to do |format|
